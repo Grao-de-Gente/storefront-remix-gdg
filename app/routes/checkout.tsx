@@ -40,10 +40,10 @@ export default function Checkout() {
               <li key={step} className="flex items-center">
                 {step === state ? (
                   <span aria-current="page" className="text-primary-600">
-                    `checkout.steps.${step}`
+                    {`checkout.steps.${step}`}
                   </span>
                 ) : (
-                  <span>`checkout.steps.${step}`</span>
+                  <span>{`checkout.steps.${step}`}</span>
                 )}
 
                 {stepIdx !== steps.length - 1 ? (

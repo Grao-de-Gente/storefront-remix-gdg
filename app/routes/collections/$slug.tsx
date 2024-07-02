@@ -1,5 +1,5 @@
 import { DataFunctionArgs } from '@remix-run/server-runtime';
-import { useLoaderData, useSubmit, V2_MetaFunction } from '@remix-run/react';
+import { useLoaderData, useSubmit, MetaFunction } from '@remix-run/react';
 import { sdk } from '../../graphqlWrapper';
 import { CollectionCard } from '~/components/collections/CollectionCard';
 import { Breadcrumbs } from '~/components/Breadcrumbs';
@@ -13,7 +13,7 @@ import { withZod } from '@remix-validated-form/with-zod';
 import { FilterableProductGrid } from '~/components/products/FilterableProductGrid';
 
 
-export const meta: V2_MetaFunction = ({ data }) => {
+export const meta: MetaFunction = ({ data }) => {
   return [
     {
       title: data?.collection

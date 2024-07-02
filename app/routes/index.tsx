@@ -2,10 +2,9 @@ import { useLoaderData } from '@remix-run/react';
 import { getCollections } from '~/providers/collections/collections';
 import { CollectionCard } from '~/components/collections/CollectionCard';
 import { BookOpenIcon } from '@heroicons/react/24/solid';
-import { LoaderArgs } from '@remix-run/server-runtime';
 
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: any) {
   const collections = await getCollections(request, { take: 20 });
   return {
     collections,

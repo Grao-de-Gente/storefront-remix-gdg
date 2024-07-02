@@ -10,7 +10,14 @@ export default {
   },
   stacks(app) {
     app.stack(function Site({ stack }) {
-      const site = new RemixSite(stack, "site");
+      const site = new RemixSite(stack, "site", {
+        runtime: "nodejs20.x",
+        environment: {
+          NODE_ENV: "production",
+          VENDURE_API_URL:"https://back.graodegente.app/shop-api",
+          CF_PAGES:"1",
+        },
+      });
       stack.addOutputs({
         url: site.url,
       });

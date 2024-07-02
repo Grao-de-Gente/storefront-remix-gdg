@@ -1,11 +1,13 @@
 import type { EntryContext } from '@remix-run/server-runtime';
 import { RemixServer } from '@remix-run/react';
 import isbot from 'isbot';
-import  { createReadableStreamFromReadable } from '@remix-run/node';
-import { PassThrough} from 'stream';
 
 import ReactDOM from 'react-dom/server';
 
+import {
+  IS_CF_PAGES,
+  safeRequireNodeDependency,
+} from '~/utils/platform-adapter';
 
 const ABORT_DELAY = 5000;
 
@@ -16,6 +18,33 @@ type PlatformRequestHandler = (
   arg3: EntryContext,
   arg4: JSX.Element,
 ) => Response | Promise<Response>;
+
+async function handleCfRequest(
+  request: Request,
+  responseStatusCode: number,
+  responseHeaders: Headers,
+  remixContext: EntryContext,
+  jsx: JSX.Element,
+) {
+  const body = await ReactDOM.renderToReadableStream(jsx, {
+    signal: request.signal,
+    onError(error: unknown) {
+      // Log streaming rendering errors from inside the shell
+      console.error(error);
+      responseStatusCode = 500;
+    },
+  });
+
+  if (isbot(request.headers.get('user-agent'))) {
+    await body.allReady;
+  }
+
+  responseHeaders.set('Content-Type', 'text/html');
+  return new Response(body, {
+    headers: responseHeaders,
+    status: responseStatusCode,
+  });
+}
 
 async function handleNodeRequest(
   request: Request,
@@ -33,6 +62,10 @@ async function handleNodeRequest(
 
     let { pipe, abort } = ReactDOM.renderToPipeableStream(jsx, {
       [callbackName]: async () => {
+        const { PassThrough } = await safeRequireNodeDependency('node:stream');
+
+        const { createReadableStreamFromReadable } =
+          await safeRequireNodeDependency('@remix-run/node');
 
         const body = new PassThrough();
         const stream = createReadableStreamFromReadable(body);
@@ -71,7 +104,9 @@ export default async function handleRequest(
       <RemixServer context={remixContext} url={request.url} />
   );
 
-  const requestHandler: PlatformRequestHandler = handleNodeRequest;
+  const requestHandler: PlatformRequestHandler = IS_CF_PAGES
+    ? handleCfRequest
+    : handleNodeRequest;
 
   return requestHandler(
     request,

@@ -7,7 +7,6 @@ import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import { Link } from '@remix-run/react';
 
-
 type OrderHistoryItemProps = {
   order?: NonNullable<
     ActiveCustomerOrderListQuery['activeCustomer']
@@ -28,7 +27,6 @@ export default function OrderHistoryItem({
     areDetailsInitiallyExpanded,
   );
   const [isLineCalcExpanded, setIsLineCalcExpanded] = useState<boolean>(false);
-
 
   return (
     <div className={`border rounded-lg overflow-hidden ${className}`}>
@@ -161,13 +159,13 @@ export default function OrderHistoryItem({
                       (acc, fLine) => acc + fLine.quantity,
                       0,
                     ) === 0
-                      ?('order.notShipped')
+                      ? ('order.notShipped')
                       : `${line.fulfillmentLines?.reduce(
                           (acc, fLine) => acc + fLine.quantity,
                           0,
-                        )} $'common.or' ${line.quantity} ${t(
+                        )} 'common.or' ${line.quantity} (
                           'order.items.fulfilled',
-                        )}`}
+                        )`}
                     {line.fulfillmentLines
                       ?.filter((fLine) => fLine.quantity > 0)
                       .map((fLine, key) => (

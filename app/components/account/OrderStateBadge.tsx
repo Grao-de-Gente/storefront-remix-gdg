@@ -50,7 +50,7 @@ export function OrderStateBadge({ state }: { state?: string }) {
     <span
       className={`text-xs font-medium px-2.5 py-0.5 rounded uppercase whitespace-nowrap ${colorClasses}`}
     >
-      `order.states.${state}`) ?? t(`order.states.Unknown`
+      (`order.states.${state}`) ?? (`order.states.Unknown`)
     </span>
   );
 }

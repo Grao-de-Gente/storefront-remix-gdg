@@ -66,7 +66,7 @@ export default function Footer({
                         href={href}
                         className="text-base text-gray-500 hover:text-gray-600"
                       >
-                        `navigation.support.${page}`
+                       { `navigation.support.${page}`}
                       </a>
                     </li>
                   ))}
@@ -85,7 +85,7 @@ export default function Footer({
                         href={href}
                         className="text-base text-gray-500 hover:text-gray-600"
                       >
-                        `navigation.company.${page}`
+                        {`navigation.company. ${page}`}
                       </a>
                     </li>
                   ))}
