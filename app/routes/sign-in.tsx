@@ -5,7 +5,7 @@ import { ErrorResult } from '~/generated/graphql';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import { Button } from '~/components/Button';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useTranslation } from 'react-i18next';
+
 
 export async function action({ params, request }: DataFunctionArgs) {
   const body = await request.formData();
@@ -28,22 +28,22 @@ export async function action({ params, request }: DataFunctionArgs) {
 export default function SignInPage() {
   const [searchParams] = useSearchParams();
   const login = useFetcher<ErrorResult>();
-  const { t } = useTranslation();
+
 
   return (
     <>
       <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-3xl text-gray-900">
-            {t('account.signInTitle')}
+            'account.signInTitle'
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            {t('common.or')}{' '}
+            'common.or'{' '}
             <Link
               to="/sign-up"
               className="font-medium text-primary-600 hover:text-primary-500"
             >
-              {t('account.register')}
+              'account.register'
             </Link>
           </p>
         </div>
@@ -51,14 +51,14 @@ export default function SignInPage() {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 rounded p-4 text-center text-sm">
-              <p>{t('vendure.demoCredentials')}</p>
+              <p>'vendure.demoCredentials'</p>
               <p>
-                {t('account.emailAddress')}
+                'account.emailAddress'
                 {': '}
                 <span className="font-bold">test@vendure.io</span>
               </p>
               <p>
-                {t('account.password')}: <span className="font-bold">test</span>
+                'account.password': <span className="font-bold">test</span>
               </p>
             </div>
             <login.Form method="post">
@@ -73,7 +73,7 @@ export default function SignInPage() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {t('account.emailAddress')}
+                    'account.emailAddress'
                   </label>
                   <div className="mt-1">
                     <input
@@ -83,7 +83,7 @@ export default function SignInPage() {
                       autoComplete="email"
                       required
                       defaultValue="test@vendure.io"
-                      placeholder={t('account.emailAddress')}
+                      placeholder='account.emailAddress'
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-gray-400 disabled:bg-gray-200 disabled:cursor-not-allowed"
                     />
                   </div>
@@ -94,7 +94,7 @@ export default function SignInPage() {
                     htmlFor="password"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {t('account.password')}
+                    'account.password'
                   </label>
                   <div className="mt-1">
                     <input
@@ -103,7 +103,7 @@ export default function SignInPage() {
                       type="password"
                       autoComplete="current-password"
                       required
-                      placeholder={t('account.password')}
+                      placeholder='account.password'
                       defaultValue="test"
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm disabled:text-gray-400 disabled:bg-gray-200 disabled:cursor-not-allowed"
                     />
@@ -123,7 +123,7 @@ export default function SignInPage() {
                       htmlFor="rememberMe"
                       className="ml-2 block text-sm text-gray-900"
                     >
-                      {t('account.rememberMe')}
+                      'account.rememberMe'
                     </label>
                   </div>
 
@@ -132,7 +132,7 @@ export default function SignInPage() {
                       href="#"
                       className="font-medium text-primary-600 hover:text-primary-500"
                     >
-                      {t('account.forgotPassword')}
+                      'account.forgotPassword'
                     </a>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function SignInPage() {
                       </div>
                       <div className="ml-3">
                         <h3 className="text-sm font-medium text-red-800">
-                          {t('account.errorSignIn')}
+                          'account.errorSignIn'
                         </h3>
                         <p className="text-sm text-red-700 mt-2">
                           {login.data.message}
@@ -167,7 +167,7 @@ export default function SignInPage() {
                       {login.state !== 'idle' && (
                         <ArrowPathIcon className="animate-spin h-5 w-5 text-gray-500" />
                       )}
-                      {t('account.signIn')}
+                      'account.signIn'
                     </span>
                   </Button>
                 </div>

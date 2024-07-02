@@ -1,6 +1,6 @@
 import { RootLoaderData } from '~/root';
 import { Link } from '@remix-run/react';
-import { useTranslation } from 'react-i18next';
+
 
 const navigation = {
   support: [
@@ -22,7 +22,7 @@ export default function Footer({
 }: {
   collections: RootLoaderData['collections'];
 }) {
-  const { t } = useTranslation();
+
 
   return (
     <footer
@@ -30,7 +30,7 @@ export default function Footer({
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
-        {t('footer.title')}
+        'footer.title'
       </h2>
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 ">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -38,7 +38,7 @@ export default function Footer({
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
-                  {t('footer.shop')}
+                  'footer.shop'
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {collections.map((collection) => (
@@ -57,7 +57,7 @@ export default function Footer({
               </div>
               <div className="mt-12 md:mt-0">
                 <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
-                  {t('footer.support')}
+                  'footer.support'
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.support.map(({ page, href }) => (
@@ -66,7 +66,7 @@ export default function Footer({
                         href={href}
                         className="text-base text-gray-500 hover:text-gray-600"
                       >
-                        {t(`navigation.support.${page}`)}
+                        `navigation.support.${page}`
                       </a>
                     </li>
                   ))}
@@ -76,7 +76,7 @@ export default function Footer({
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
-                  {t('account.company')}
+                  'account.company'
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.company.map(({ page, href }) => (
@@ -85,7 +85,7 @@ export default function Footer({
                         href={href}
                         className="text-base text-gray-500 hover:text-gray-600"
                       >
-                        {t(`navigation.company.${page}`)}
+                        `navigation.company.${page}`
                       </a>
                     </li>
                   ))}
@@ -95,14 +95,14 @@ export default function Footer({
           </div>
           <div className="mt-8 xl:mt-0">
             <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
-              {t('footer.subscribeHeader')}
+              'footer.subscribeHeader'
             </h3>
             <p className="mt-4 text-base text-gray-500">
-              {t('footer.subscribeIntro')}
+              'footer.subscribeIntro'
             </p>
             <form className="mt-4 sm:flex sm:max-w-md">
               <label htmlFor="email-address" className="sr-only">
-                {t('acount.emailAddress')}
+                'acount.emailAddress'
               </label>
               <input
                 type="email"
@@ -111,14 +111,14 @@ export default function Footer({
                 autoComplete="email"
                 required
                 className="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400"
-                placeholder={t('footer.emailPlaceholder')}
+                placeholder='footer.emailPlaceholder'
               />
               <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                 <button
                   type="submit"
                   className="w-full bg-primary-500 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-primary-500"
                 >
-                  {t('footer.subscribe')}
+                  'footer.subscribe'
                 </button>
               </div>
             </form>

@@ -1,5 +1,4 @@
 import { FunnelIcon } from '@heroicons/react/24/solid';
-import { useTranslation } from 'react-i18next';
 
 export function FiltersButton({
   filterCount,
@@ -8,7 +7,6 @@ export function FiltersButton({
   filterCount: number;
   onClick: () => void;
 }) {
-  const { t } = useTranslation();
 
   return (
     <button
@@ -23,7 +21,7 @@ export function FiltersButton({
       ) : (
         ''
       )}
-      <span>{t('common.filters')}</span>
+      <span>'common.filters'</span>
       <FunnelIcon className="w-5 h-5" aria-hidden="true" />
     </button>
   );

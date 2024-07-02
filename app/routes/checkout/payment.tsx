@@ -15,7 +15,7 @@ import { DummyPayments } from '~/components/checkout/DummyPayments';
 import { BraintreeDropIn } from '~/components/checkout/braintree/BraintreePayments';
 import { getActiveOrder } from '~/providers/orders/order';
 import { getSessionStorage } from '~/sessions';
-import { useTranslation } from 'react-i18next';
+
 
 export async function loader({ params, request }: DataFunctionArgs) {
   const session = await getSessionStorage().then((sessionStorage) =>
@@ -128,7 +128,7 @@ export default function CheckoutPayment() {
     error,
   } = useLoaderData<typeof loader>();
   const { activeOrderFetcher, activeOrder } = useOutletContext<OutletContext>();
-  const { t } = useTranslation();
+
 
   const paymentError = getPaymentError(error);
 
@@ -140,7 +140,7 @@ export default function CheckoutPayment() {
             {brainTreeError ? (
               <div>
                 <p className="text-red-700 font-bold">
-                  {t('checkout.braintreeError')}
+                  'checkout.braintreeError'
                 </p>
                 <p className="text-sm">{brainTreeError}</p>
               </div>
@@ -160,7 +160,7 @@ export default function CheckoutPayment() {
             {stripeError ? (
               <div>
                 <p className="text-red-700 font-bold">
-                  {t('checkout.stripeError')}
+                  'checkout.stripeError'
                 </p>
                 <p className="text-sm">{stripeError}</p>
               </div>

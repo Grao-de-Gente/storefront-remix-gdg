@@ -19,7 +19,7 @@ import Alert from '~/components/Alert';
 import { StockLevelLabel } from '~/components/products/StockLevelLabel';
 import TopReviews from '~/components/products/TopReviews';
 import { ScrollableContainer } from '~/components/products/ScrollableContainer';
-import { useTranslation } from 'react-i18next';
+
 
 export const meta: MetaFunction = ({ data }) => {
   return [
@@ -62,10 +62,10 @@ export default function ProductSlug() {
   }>();
   const { activeOrder } = activeOrderFetcher.data ?? {};
   const addItemToOrderError = getAddItemToOrderError(error);
-  const { t } = useTranslation();
+
 
   if (!product) {
-    return <div>{t('product.notFound')}</div>;
+    return <div>'product.notFound'</div>;
   }
 
   const findVariantById = (id: string) =>
@@ -150,7 +150,7 @@ export default function ProductSlug() {
           {/* Product info */}
           <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
             <div className="">
-              <h3 className="sr-only">{t('product.description')}</h3>
+              <h3 className="sr-only">'product.description'</h3>
 
               <div
                 className="text-base text-gray-700"
@@ -167,7 +167,7 @@ export default function ProductSlug() {
                     htmlFor="option"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {t('product.selectOption')}
+                    'product.selectOption'
                   </label>
                   <select
                     className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
@@ -223,10 +223,10 @@ export default function ProductSlug() {
                     {qtyInCart ? (
                       <span className="flex items-center">
                         <CheckIcon className="w-5 h-5 mr-1" /> {qtyInCart}{' '}
-                        {t('product.inCart')}
+                        'product.inCart'
                       </span>
                     ) : (
-                      t('product.addToCart')
+                     ('product.addToCart')
                     )}
                   </button>
 
@@ -239,7 +239,7 @@ export default function ProductSlug() {
                       aria-hidden="true"
                     />
                     <span className="sr-only">
-                      {t('product.addToFavorites')}
+                      'product.addToFavorites'
                     </span>
                   </button>
                 </div>
@@ -256,12 +256,12 @@ export default function ProductSlug() {
 
               <section className="mt-12 pt-12 border-t text-xs">
                 <h3 className="text-gray-600 font-bold mb-2">
-                  {t('product.shippingAndReturns')}
+                  'product.shippingAndReturns'
                 </h3>
                 <div className="text-gray-500 space-y-1">
-                  <p>{t('product.shippingInfo')}</p>
-                  <p>{t('product.shippingCostsInfo')}</p>
-                  <p>{t('product.returnsInfo')}</p>
+                  <p>'product.shippingInfo'</p>
+                  <p>'product.shippingCostsInfo'</p>
+                  <p>'product.returnsInfo'</p>
                 </div>
               </section>
             </activeOrderFetcher.Form>
@@ -276,12 +276,12 @@ export default function ProductSlug() {
 }
 
 export function CatchBoundary() {
-  const { t } = useTranslation();
+
 
   return (
     <div className="max-w-6xl mx-auto px-4">
       <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
-        {t('product.notFound')}
+        'product.notFound'
       </h2>
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
         {/* Image gallery */}
@@ -295,7 +295,7 @@ export function CatchBoundary() {
 
         {/* Product info */}
         <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-          <div className="">{t('product.notFoundInfo')}</div>
+          <div className="">'product.notFoundInfo'</div>
           <div className="flex-1 space-y-3 py-1">
             <div className="h-2 bg-slate-200 rounded"></div>
             <div className="space-y-3">

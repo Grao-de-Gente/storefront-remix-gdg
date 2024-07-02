@@ -7,7 +7,6 @@ const commonConfig = {
   appDirectory: 'app',
   serverModuleFormat: 'esm',
   serverDependenciesToBundle: [
-    'remix-i18next',
     '@remix-validated-form/with-zod',
   ],
   tailwind: true,

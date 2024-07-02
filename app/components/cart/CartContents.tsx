@@ -1,7 +1,7 @@
 import { Form, Link } from '@remix-run/react';
 import { Price } from '~/components/products/Price';
 import { ActiveOrderQuery, CurrencyCode } from '~/generated/graphql';
-import { useTranslation } from 'react-i18next';
+
 
 export function CartContents({
   orderLines,
@@ -16,7 +16,7 @@ export function CartContents({
   adjustOrderLine?: (lineId: string, quantity: number) => void;
   removeItem?: (lineId: string) => void;
 }) {
-  const { t } = useTranslation();
+
   const isEditable = editable !== false;
 
   return (
@@ -52,7 +52,7 @@ export function CartContents({
                 {editable ? (
                   <Form>
                     <label htmlFor={`quantity-${line.id}`} className="mr-2">
-                      {t('common.quantity')}
+                      'common.quantity'
                     </label>
                     <select
                       disabled={!isEditable}
@@ -77,7 +77,7 @@ export function CartContents({
                   </Form>
                 ) : (
                   <div className="text-gray-800">
-                    <span className="mr-1">{t('common.quantity')}</span>
+                    <span className="mr-1">'common.quantity'</span>
                     <span className="font-medium">{line.quantity}</span>
                   </div>
                 )}
@@ -91,7 +91,7 @@ export function CartContents({
                       className="font-medium text-primary-600 hover:text-primary-500"
                       onClick={() => removeItem && removeItem(line.id)}
                     >
-                      {t('common.remove')}
+                      'common.remove'
                     </button>
                   )}
                 </div>

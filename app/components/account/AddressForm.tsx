@@ -1,5 +1,4 @@
 import { AvailableCountriesQuery, OrderAddress } from '~/generated/graphql';
-import { useTranslation } from 'react-i18next';
 
 export function AddressForm({
   address,
@@ -10,7 +9,6 @@ export function AddressForm({
   defaultFullName?: string;
   availableCountries?: AvailableCountriesQuery['availableCountries'];
 }) {
-  const { t } = useTranslation();
 
   return (
     <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
@@ -19,7 +17,7 @@ export function AddressForm({
           htmlFor="fullName"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('account.fullName')}
+          'account.fullName'
         </label>
         <div className="mt-1">
           <input
@@ -38,7 +36,7 @@ export function AddressForm({
           htmlFor="company"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.company')}
+          'address.company'
         </label>
         <div className="mt-1">
           <input
@@ -56,7 +54,7 @@ export function AddressForm({
           htmlFor="streetLine1"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.streetLine1')}
+          'address.streetLine1'
         </label>
         <div className="mt-1">
           <input
@@ -75,7 +73,7 @@ export function AddressForm({
           htmlFor="streetLine2"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.streetLine2')}
+          'address.streetLine2'
         </label>
         <div className="mt-1">
           <input
@@ -93,7 +91,7 @@ export function AddressForm({
           htmlFor="city"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.city')}
+          'address.city'
         </label>
         <div className="mt-1">
           <input
@@ -112,7 +110,7 @@ export function AddressForm({
           htmlFor="countryCode"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.country')}
+          'address.country'
         </label>
         <div className="mt-1">
           {availableCountries && (
@@ -137,7 +135,7 @@ export function AddressForm({
           htmlFor="province"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.province')}
+          'address.province'
         </label>
         <div className="mt-1">
           <input
@@ -156,7 +154,7 @@ export function AddressForm({
           htmlFor="postalCode"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.postalCode')}
+          'address.postalCode'
         </label>
         <div className="mt-1">
           <input
@@ -175,7 +173,7 @@ export function AddressForm({
           htmlFor="phoneNumber"
           className="block text-sm font-medium text-gray-700"
         >
-          {t('address.phoneNumber')}
+          'address.phoneNumber'
         </label>
         <div className="mt-1">
           <input

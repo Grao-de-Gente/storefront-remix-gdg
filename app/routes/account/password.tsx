@@ -15,7 +15,7 @@ import {
   isErrorResult,
   isValidationErrorResponseData,
 } from '~/utils/validation-helper';
-import { useTranslation } from 'react-i18next';
+
 
 export const validator = withZod(
   z
@@ -62,7 +62,7 @@ export default function AccountPassword() {
   const actionDataHook = useActionData<typeof action>();
   const { state } = useNavigation();
   const formRef = useRef<HTMLFormElement>(null);
-  const { t } = useTranslation();
+
 
   useEffect(() => {
     if (isValidationErrorResponseData(actionDataHook)) {
@@ -95,7 +95,7 @@ export default function AccountPassword() {
               <div>
                 <Input
                   required
-                  label={t('account.currentPassword')}
+                  label='account.currentPassword'
                   name="currentPassword"
                   type="password"
                 />
@@ -105,7 +105,7 @@ export default function AccountPassword() {
               <div>
                 <Input
                   required
-                  label={t('account.newPassword')}
+                  label='account.newPassword'
                   name="newPassword"
                   type="password"
                 />
@@ -113,7 +113,7 @@ export default function AccountPassword() {
               <div>
                 <Input
                   required
-                  label={t('account.confirmPassword')}
+                  label='account.confirmPassword'
                   name="confirmPassword"
                   type="password"
                 />
@@ -123,13 +123,13 @@ export default function AccountPassword() {
         )}
         {isSaved && (
           <SuccessMessage
-            heading={t('account.pwdSuccessHeading')}
-            message={t('account.pwdSuccessMessage')}
+            heading='account.pwdSuccessHeading'
+            message='account.pwdSuccessMessage'
           />
         )}
         {errorMessage && (
           <ErrorMessage
-            heading={t('account.pwdErrorMessage')}
+            heading='account.pwdErrorMessage'
             message={errorMessage}
           />
         )}
@@ -139,16 +139,16 @@ export default function AccountPassword() {
               type="submit"
               isSubmitting={state === 'submitting'}
             >
-              {t('account.savePassword')}
+              'account.savePassword'
             </HighlightedButton>
             <Button type="reset" onClick={() => setEditing(false)}>
-              {t('common.cancel')}
+              'common.cancel'
             </Button>
           </div>
         ) : (
           <>
             <HighlightedButton type="button" onClick={() => setEditing(true)}>
-              <PencilIcon className="w-4 h-4" /> {t('account.changePassword')}
+              <PencilIcon className="w-4 h-4" /> 'account.changePassword'
             </HighlightedButton>
           </>
         )}

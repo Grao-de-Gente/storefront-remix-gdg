@@ -4,7 +4,6 @@ import { Button } from '~/components/Button';
 import { ComponentProps } from 'react';
 import { useNavigation } from '@remix-run/react';
 import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
 
 export type PaginationProps = {
   appliedPaginationLimit: number;
@@ -21,7 +20,6 @@ export function Pagination({
   ...props
 }: PaginationProps & ComponentProps<'div'>) {
   const navigation = useNavigation();
-  const { t } = useTranslation();
 
   return (
     <div
@@ -43,7 +41,7 @@ export function Pagination({
         >
           {Array.from(allowedPaginationLimits).map((x) => (
             <option key={x} value={x}>
-              {x} {t('common.perPage')}
+              {x} 'common.perPage'
             </option>
           ))}
         </Select>
@@ -57,7 +55,7 @@ export function Pagination({
           disabled={appliedPaginationPage <= 1 || navigation.state !== 'idle'}
           className="!text-sm rounded-r-none border-r-0"
         >
-          {t('common.prev')}
+          'common.prev'
         </Button>
         <Button
           name="page"
@@ -69,7 +67,7 @@ export function Pagination({
           }
           className="!text-sm rounded-l-none"
         >
-          {t('common.next')}
+          'common.next'
         </Button>
       </div>
     </div>

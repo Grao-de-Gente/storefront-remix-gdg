@@ -5,7 +5,7 @@ import { useRootLoader } from '~/utils/use-root-loader';
 import { UserIcon } from '@heroicons/react/24/solid';
 import { useScrollingUp } from '~/utils/use-scrolling-up';
 import { classNames } from '~/utils/class-names';
-import { useTranslation } from 'react-i18next';
+
 
 export function Header({
   onCartIconClick,
@@ -17,7 +17,7 @@ export function Header({
   const data = useRootLoader();
   const isSignedIn = !!data.activeCustomer.activeCustomer?.id;
   const isScrollingUp = useScrollingUp();
-  const { t } = useTranslation();
+
 
   return (
     <header
@@ -30,13 +30,13 @@ export function Header({
         <div className="max-w-6xl mx-2 md:mx-auto flex items-center justify-between">
           <div>
             <p className="hidden sm:block">
-              {t('vendure.exclusive')}{' '}
+              'vendure.exclusive'{' '}
               <a
                 href="https://github.com/vendure-ecommerce/storefront-remix-starter"
                 target="_blank"
                 className="underline"
               >
-                {t('vendure.repoLinkLabel')}
+                'vendure.repoLinkLabel'
               </a>
             </p>
           </div>
@@ -47,7 +47,7 @@ export function Header({
             >
               <UserIcon className="w-4 h-4"></UserIcon>
               <span>
-                {isSignedIn ? t('account.myAccount') : t('account.signIn')}
+                {isSignedIn ?('account.myAccount') :('account.signIn')}
               </span>
             </Link>
           </div>
@@ -60,7 +60,7 @@ export function Header({
               src="/cube-logo-small.webp"
               width={40}
               height={31}
-              alt={t('commmon.logoAlt')}
+              alt='commmon.logoAlt'
             />
           </Link>
         </h1>

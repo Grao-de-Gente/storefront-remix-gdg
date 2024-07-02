@@ -3,8 +3,6 @@ import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { ActionFunctionArgs, redirect } from '@remix-run/server-runtime';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { verifyCustomerAccount } from '~/providers/account/account';
-import { useTranslation } from 'react-i18next';
-import { getFixedT } from '~/i18next.server';
 import { LoaderFunctionArgs } from '@remix-run/router';
 
 type LoaderReturnType = {
@@ -19,11 +17,10 @@ export async function loader({
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
   if (!token) {
-    const t = await getFixedT(request);
 
     return {
       success: false,
-      error: t('common.tokenError'),
+      error: 'common.tokenError',
     };
   }
 
@@ -58,7 +55,6 @@ export default function VerifyTokenPage() {
   const [searchParams] = useSearchParams();
   const result = useLoaderData<LoaderReturnType>();
   const btnRef = useRef<HTMLButtonElement>(null);
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (!result.success || !btnRef.current) {
@@ -84,7 +80,7 @@ export default function VerifyTokenPage() {
                 </div>
                 <div className="ml-3">
                   <p className="text-sm text-green-700">
-                    {t('account.verifyMessage')}
+                    account.verifyMessage
                   </p>
                 </div>
                 <form method="post">

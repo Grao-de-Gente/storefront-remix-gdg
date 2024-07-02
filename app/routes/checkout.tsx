@@ -4,7 +4,7 @@ import { CartContents } from '~/components/cart/CartContents';
 import { OutletContext } from '~/types';
 import { classNames } from '~/utils/class-names';
 import { CartTotals } from '~/components/cart/CartTotals';
-import { useTranslation } from 'react-i18next';
+
 
 const steps = ['shipping', 'payment', 'confirmation'];
 
@@ -12,7 +12,7 @@ export default function Checkout() {
   const outletContext = useOutletContext<OutletContext>();
   const { activeOrder, adjustOrderLine, removeItem } = outletContext;
   const location = useLocation();
-  const { t } = useTranslation();
+
 
   let state = 'shipping';
   if (location.pathname === '/checkout/payment') {
@@ -30,9 +30,9 @@ export default function Checkout() {
           'max-w-2xl mx-auto pt-8 pb-24 px-4 sm:px-6 lg:px-8',
         )}
       >
-        <h2 className="sr-only">{t('cart.checkout')}</h2>
+        <h2 className="sr-only">'cart.checkout'</h2>
         <nav
-          aria-label={t('cart.progress')}
+          aria-label='cart.progress'
           className="hidden sm:block pb-8 mb-8 border-b"
         >
           <ol role="list" className="flex space-x-4 justify-center">
@@ -40,10 +40,10 @@ export default function Checkout() {
               <li key={step} className="flex items-center">
                 {step === state ? (
                   <span aria-current="page" className="text-primary-600">
-                    {t(`checkout.steps.${step}`)}
+                    `checkout.steps.${step}`
                   </span>
                 ) : (
-                  <span>{t(`checkout.steps.${step}`)}</span>
+                  <span>`checkout.steps.${step}`</span>
                 )}
 
                 {stepIdx !== steps.length - 1 ? (
@@ -65,7 +65,7 @@ export default function Checkout() {
           {!isConfirmationPage && (
             <div className="mt-10 lg:mt-0">
               <h2 className="text-lg font-medium text-gray-900 mb-4">
-                {t('order.summary')}
+                'order.summary'
               </h2>
 
               <CartContents

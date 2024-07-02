@@ -13,7 +13,7 @@ import { Button } from '../Button';
 import { ErrorMessage } from '../ErrorMessage';
 import { HighlightedButton } from '../HighlightedButton';
 import Modal from '../modal/Modal';
-import { useTranslation } from 'react-i18next';
+
 
 type EditAddressProps = {
   address: Address;
@@ -29,7 +29,7 @@ export default function EditAddressCard({
   const deleteAddress = useFetcher<ErrorResult>();
   const [isDeleteModalVisible, setDeleteModalVisible] =
     useState<boolean>(false);
-  const { t } = useTranslation();
+
 
   return (
     <>
@@ -41,16 +41,16 @@ export default function EditAddressCard({
         }
       >
         <deleteAddress.Form method="post" preventScrollReset>
-          <Modal.Title>{t('address.deleteModal.title')}</Modal.Title>
+          <Modal.Title>'address.deleteModal.title'</Modal.Title>
           <Modal.Body>
             <div className="space-y-4 my-4">
-              {t('address.deleteModal.confirmation')}
+              'address.deleteModal.confirmation'
               <input type="hidden" name="id" value={address.id} />
               {deleteAddress.data && (
                 <ErrorMessage
-                  heading={t('address.deleteModal.error')}
+                  heading='address.deleteModal.error'
                   message={
-                    deleteAddress.data?.message ?? t('common.defaultError')
+                    deleteAddress.data?.message ??('common.defaultError')
                   }
                 />
               )}
@@ -62,7 +62,7 @@ export default function EditAddressCard({
               onClick={() => setDeleteModalVisible(false)}
               disabled={deleteAddress.state !== 'idle'}
             >
-              {t('common.cancel')}
+              'common.cancel'
             </Button>
             <HighlightedButton
               type="submit"
@@ -71,7 +71,7 @@ export default function EditAddressCard({
               disabled={deleteAddress.state !== 'idle'}
               isSubmitting={deleteAddress.state !== 'idle'}
             >
-              {t('common.yes')}
+              'common.yes'
             </HighlightedButton>
           </Modal.Footer>
         </deleteAddress.Form>
@@ -112,10 +112,10 @@ export default function EditAddressCard({
             address.defaultBillingAddress) && (
             <div className="text-end text-gray-500 uppercase tracking-wider">
               <span className="block text-sm font-medium">
-                {t('common.default')}
+                'common.default'
               </span>
               <span className="block text-xs mt-1">
-                {address.defaultShippingAddress && t('common.shipping')}
+                {address.defaultShippingAddress && 'common.shipping' }
                 {address.defaultShippingAddress &&
                   address.defaultBillingAddress && (
                     <>
@@ -123,7 +123,7 @@ export default function EditAddressCard({
                       &amp;&nbsp;
                     </>
                   )}
-                {address.defaultBillingAddress && t('common.billing')}
+                {address.defaultBillingAddress &&('common.billing')}
               </span>
             </div>
           )}
@@ -138,7 +138,7 @@ export default function EditAddressCard({
               to={`/account/addresses/${address.id}`}
             >
               <PencilIcon className="w-4 h-4"></PencilIcon>
-              {t('common.edit')}
+              'common.edit'
             </Link>
             <button
               type="button"
@@ -152,7 +152,7 @@ export default function EditAddressCard({
               ) : (
                 <ArrowPathIcon className="w-4 h-4 animate-spin"></ArrowPathIcon>
               )}
-              {t('common.remove')}
+              'common.remove'
             </button>
           </div>
           {(!address.defaultShippingAddress ||
@@ -176,7 +176,7 @@ export default function EditAddressCard({
                       ) : (
                         <ArrowPathIcon className="w-4 h-4 animate-spin"></ArrowPathIcon>
                       )}
-                      {t('common.shipping')}
+                      'common.shipping'
                     </button>
                   </setShipping.Form>
                 )}
@@ -197,7 +197,7 @@ export default function EditAddressCard({
                       ) : (
                         <ArrowPathIcon className="w-4 h-4 animate-spin"></ArrowPathIcon>
                       )}
-                      {t('common.billing')}
+                      'common.billing'
                     </button>
                   </setBilling.Form>
                 )}

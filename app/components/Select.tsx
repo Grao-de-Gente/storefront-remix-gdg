@@ -1,7 +1,6 @@
 import React, { SelectHTMLAttributes } from 'react';
 import { useField } from 'remix-validated-form';
 import FormElement from './FormElement';
-import { useTranslation } from 'react-i18next';
 
 export type SelectProps = {
   placeholder?: string;
@@ -25,7 +24,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ref,
   ) => {
     const { getInputProps } = useField(name);
-    const { t } = useTranslation();
 
     return (
       <FormElement name={name} label={label} required={required}>
@@ -37,7 +35,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           {...getInputProps({})}
         >
           {!noPlaceholder && (
-            <option value="">{placeholder ?? t('common.select')}</option>
+            <option value="">{placeholder ?? 'common.select'}</option>
           )}
           {children}
         </select>

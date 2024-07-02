@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+
 
 // Copied from https://www.vendure.io/docs/typescript-api/orders/order-state/
 type OrderState =
@@ -17,7 +17,7 @@ type OrderState =
   | 'Cancelled';
 
 export function OrderStateBadge({ state }: { state?: string }) {
-  const { t } = useTranslation();
+
 
   let colorClasses = '';
   switch (state as OrderState) {
@@ -50,7 +50,7 @@ export function OrderStateBadge({ state }: { state?: string }) {
     <span
       className={`text-xs font-medium px-2.5 py-0.5 rounded uppercase whitespace-nowrap ${colorClasses}`}
     >
-      {t(`order.states.${state}`) ?? t(`order.states.Unknown`)}
+      `order.states.${state}`) ?? t(`order.states.Unknown`
     </span>
   );
 }

@@ -17,7 +17,7 @@ import {
 import { getActiveCustomerDetails } from '~/providers/customer/customer';
 import useToggleState from '~/utils/use-toggle-state';
 import { replaceEmptyString } from '~/utils/validation';
-import { useTranslation } from 'react-i18next';
+
 
 enum FormIntent {
   UpdateEmail = 'updateEmail',
@@ -144,7 +144,7 @@ export async function action({ request }: DataFunctionArgs) {
 export default function AccountDetails() {
   const { activeCustomer } = useLoaderData<typeof loader>();
   const actionDataHook = useActionData<typeof action>();
-  const { t } = useTranslation();
+
 
   const { firstName, lastName, title, phoneNumber, emailAddress } =
     activeCustomer;
@@ -197,12 +197,12 @@ export default function AccountDetails() {
         size="small"
       >
         <ValidatedForm validator={changeEmailValidator} method="post">
-          <Modal.Title>{t('account.changeEmailModal.title')}</Modal.Title>
+          <Modal.Title>'account.changeEmailModal.title'</Modal.Title>
           <Modal.Body>
             <div className="space-y-4 my-8">
-              <p>{t('account.changeEmailModal.heading')}</p>
+              <p>'account.changeEmailModal.heading'</p>
               <p>
-                {t('account.changeEmailModal.currentEmail')}{' '}
+                'account.changeEmailModal.currentEmail'{' '}
                 <strong>{emailAddress}</strong>
               </p>
 
@@ -215,12 +215,12 @@ export default function AccountDetails() {
                 <Input
                   ref={emailInputRef}
                   autoFocus
-                  label={t('account.changeEmailModal.new')}
+                  label='account.changeEmailModal.new'
                   name="email"
                   required
                 />
                 <Input
-                  label={t('account.password')}
+                  label='account.password'
                   type="password"
                   name="password"
                   required
@@ -229,7 +229,7 @@ export default function AccountDetails() {
               </div>
               {formError && formError.intent === FormIntent.UpdateEmail && (
                 <ErrorMessage
-                  heading={t('account.changeEmailModal.errorMessage')}
+                  heading='account.changeEmailModal.errorMessage'
                   message={formError.message}
                 />
               )}
@@ -237,13 +237,13 @@ export default function AccountDetails() {
           </Modal.Body>
           <Modal.Footer>
             <Button type="reset" onClick={() => closeChangeEmailModal()}>
-              {t('common.cancel')}
+              'common.cancel'
             </Button>
             <HighlightedButton
               type="submit"
               isSubmitting={state === 'submitting'}
             >
-              {t('common.save')}
+              'common.save'
             </HighlightedButton>
           </Modal.Footer>
         </ValidatedForm>
@@ -252,14 +252,14 @@ export default function AccountDetails() {
       <div className="space-y-10 p-4 mt-5">
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-2">
-            <h3 className="text-sm text-gray-500">{t('account.email')}</h3>
+            <h3 className="text-sm text-gray-500">'account.email'</h3>
             {emailSavedResponse ? (
               <span>
                 <span className="italic text-gray-800">
                   {emailSavedResponse.newEmailAddress}
                 </span>
                 <span className="ml-2 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                  {t('account.changeEmailConfirmation')}
+                  'account.changeEmailConfirmation'
                 </span>
               </span>
             ) : (
@@ -272,7 +272,7 @@ export default function AccountDetails() {
               onClick={() => openChangeEmailModal()}
             >
               <PencilIcon className="w-4 h-4" />{' '}
-              {t('account.changeEmailButton')}
+              'account.changeEmailButton'
             </HighlightedButton>
           </div>
         </div>
@@ -298,7 +298,7 @@ export default function AccountDetails() {
               {isEditing && (
                 <div className="col-span-2">
                   <Input
-                    label={t('account.title')}
+                    label='account.title'
                     name="title"
                     className="sm:w-1/4"
                   />
@@ -308,14 +308,14 @@ export default function AccountDetails() {
                 <>
                   <div>
                     <Input
-                      label={t('account.firstName')}
+                      label='account.firstName'
                       name="firstName"
                       required
                     />
                   </div>
                   <div>
                     <Input
-                      label={t('account.lastName')}
+                      label='account.lastName'
                       name="lastName"
                       required
                     />
@@ -324,7 +324,7 @@ export default function AccountDetails() {
               ) : (
                 <div>
                   <h3 className="text-sm text-gray-500">
-                    {t('account.fullName')}
+                    'account.fullName'
                   </h3>
                   {replaceEmptyString(fullName)}
                 </div>
@@ -332,11 +332,11 @@ export default function AccountDetails() {
 
               <div>
                 {isEditing ? (
-                  <Input label={t('account.phoneNumber')} name="phoneNumber" />
+                  <Input label='account.phoneNumber' name="phoneNumber" />
                 ) : (
                   <div>
                     <h3 className="text-sm text-gray-500">
-                      {t('account.phoneNumber')}
+                      'account.phoneNumber'
                     </h3>
                     {replaceEmptyString(phoneNumber)}
                   </div>
@@ -348,7 +348,7 @@ export default function AccountDetails() {
                     {formError &&
                       formError.intent === FormIntent.UpdateDetails && (
                         <ErrorMessage
-                          heading={t('account.errorMessage')}
+                          heading='account.errorMessage'
                           message={formError.message}
                         />
                       )}
@@ -358,11 +358,11 @@ export default function AccountDetails() {
                         type="submit"
                         isSubmitting={state === 'submitting'}
                       >
-                        <CheckIcon className="w-4 h-4" /> {t('common.save')}
+                        <CheckIcon className="w-4 h-4" /> 'common.save'
                       </HighlightedButton>
 
                       <Button type="reset" onClick={() => setIsEditing(false)}>
-                        <XMarkIcon className="w-4 h-4" /> {t('common.cancel')}
+                        <XMarkIcon className="w-4 h-4" /> 'common.cancel'
                       </Button>
                     </div>
                   </>
@@ -371,7 +371,7 @@ export default function AccountDetails() {
                     type="button"
                     onClick={() => setIsEditing(true)}
                   >
-                    <PencilIcon className="w-4 h-4" /> {t('common.edit')}
+                    <PencilIcon className="w-4 h-4" /> 'common.edit'
                   </HighlightedButton>
                 )}
               </div>

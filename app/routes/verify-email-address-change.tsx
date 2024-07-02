@@ -3,8 +3,6 @@ import { useLoaderData, useSearchParams } from '@remix-run/react';
 import { ActionFunctionArgs, redirect } from '@remix-run/server-runtime';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { updateCustomerEmailAddress } from '~/providers/account/account';
-import { useTranslation } from 'react-i18next';
-import { getFixedT } from '~/i18next.server';
 import { LoaderFunctionArgs } from '@remix-run/router';
 
 type LoaderReturnType = {
@@ -17,12 +15,11 @@ export async function loader({
 }: LoaderFunctionArgs): Promise<LoaderReturnType> {
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
-  const t = await getFixedT(request);
 
   if (!token) {
     return {
       success: false,
-      error: t('tokenError'),
+      error: 'tokenError',
     };
   }
 
@@ -44,7 +41,6 @@ export default function VerifyEmailAddressChangeTokenPage() {
   const [searchParams] = useSearchParams();
   const result = useLoaderData<LoaderReturnType>();
   const btnRef = useRef<HTMLButtonElement>(null);
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (!result.success || !btnRef.current) {
@@ -70,7 +66,7 @@ export default function VerifyEmailAddressChangeTokenPage() {
                 </div>
                 <div className="ml-3">
                   <p className="text-sm text-green-700">
-                    {t('account.verifyEmailMessage')}
+                    'account.verifyEmailMessage'
                   </p>
                 </div>
                 <form method="post">

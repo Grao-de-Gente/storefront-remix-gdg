@@ -8,15 +8,13 @@ import {
   validateRegistrationForm,
 } from '~/utils/registration-helper';
 import { API_URL, DEMO_API_URL } from '~/constants';
-import { useTranslation } from 'react-i18next';
-import { getFixedT } from '~/i18next.server';
+
 
 export async function action({ request }: ActionFunctionArgs) {
   if (API_URL === DEMO_API_URL) {
-    const t = await getFixedT(request);
 
     return {
-      form: t('vendure.registrationError'),
+      form: 'vendure.registrationError',
     };
   }
 
@@ -41,22 +39,22 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function SignUpPage() {
   const [searchParams] = useSearchParams();
   const formErrors = useActionData<RegisterValidationErrors>();
-  const { t } = useTranslation();
+
 
   return (
     <>
       <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 text-center text-3xl text-gray-900">
-            {t('account.create')}
+            'account.create'
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            {t('common.or')}{' '}
+            'common.or'{' '}
             <Link
               to="/sign-in"
               className="font-medium text-primary-600 hover:text-primary-500"
             >
-              {t('account.login')}
+              'account.login'
             </Link>
           </p>
         </div>
@@ -64,7 +62,7 @@ export default function SignUpPage() {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 rounded p-4 text-center text-sm">
-              <p>{t('vendure.registrationMessage')}</p>
+              <p>'vendure.registrationMessage'</p>
             </div>
             <Form className="space-y-6" method="post">
               <input
@@ -77,7 +75,7 @@ export default function SignUpPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {t('account.emailAddress')}
+                  'account.emailAddress'
                 </label>
                 <div className="mt-1">
                   <input
@@ -100,7 +98,7 @@ export default function SignUpPage() {
                   htmlFor="firstName"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {t('account.firstName')}
+                  'account.firstName'
                 </label>
                 <div className="mt-1">
                   <input
@@ -118,7 +116,7 @@ export default function SignUpPage() {
                   htmlFor="lastName"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {t('account.lastName')}
+                  'account.lastName'
                 </label>
                 <div className="mt-1">
                   <input
@@ -136,7 +134,7 @@ export default function SignUpPage() {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {t('account.password')}
+                  'account.password'
                 </label>
                 <div className="mt-1">
                   <input
@@ -158,7 +156,7 @@ export default function SignUpPage() {
                   htmlFor="repeatPassword"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {t('account.repeatPassword')}
+                  'account.repeatPassword'
                 </label>
                 <div className="mt-1">
                   <input
@@ -186,7 +184,7 @@ export default function SignUpPage() {
                     </div>
                     <div className="ml-3">
                       <h3 className="text-sm font-medium text-red-800">
-                        {t('account.createError')}
+                        'account.createError'
                       </h3>
                       <p className="text-sm text-red-700 mt-2">
                         {formErrors.form}
@@ -201,7 +199,7 @@ export default function SignUpPage() {
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
-                  {t('account.signUp')}
+                  'account.signUp'
                 </button>
               </div>
             </Form>

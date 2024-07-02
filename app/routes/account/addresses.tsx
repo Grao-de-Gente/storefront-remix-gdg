@@ -8,7 +8,6 @@ import {
   updateCustomerAddress,
 } from '~/providers/account/account';
 import { getActiveCustomerAddresses } from '~/providers/customer/customer';
-import { getFixedT } from '~/i18next.server';
 import { LoaderFunctionArgs } from '@remix-run/router';
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -21,14 +20,13 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const id = formData.get('id') as string | null;
   const _action = formData.get('_action');
-  const t = await getFixedT(request);
 
   // Verify that id is set
   if (!id || id.length === 0) {
     return json<ErrorResult>(
       {
         errorCode: ErrorCode.IdentifierChangeTokenInvalidError, // TODO: I dont think this error is 100% appropriate - decide later
-        message: t('address.idError'),
+        message: 'address.idError',
       },
       {
         status: 400, // Bad request
@@ -53,7 +51,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   return json<ErrorResult>(
     {
-      message: t('common.unknowError'),
+      message: 'common.unknowError',
       errorCode: ErrorCode.UnknownError,
     },
     {
