@@ -1,6 +1,8 @@
 import type { EntryContext } from '@remix-run/server-runtime';
 import { RemixServer } from '@remix-run/react';
 import isbot from 'isbot';
+import  { createReadableStreamFromReadable } from '@remix-run/node';
+import { PassThrough} from 'stream';
 
 import ReactDOM from 'react-dom/server';
 
@@ -15,30 +17,46 @@ type PlatformRequestHandler = (
   arg4: JSX.Element,
 ) => Response | Promise<Response>;
 
-async function handleCfRequest(
+async function handleNodeRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
   jsx: JSX.Element,
-) {
-  const body = await ReactDOM.renderToReadableStream(jsx, {
-    signal: request.signal,
-    onError(error: unknown) {
-      // Log streaming rendering errors from inside the shell
-      console.error(error);
-      responseStatusCode = 500;
-    },
-  });
+): Promise<Response> {
+  let callbackName = isbot(request.headers.get('user-agent'))
+    ? 'onAllReady'
+    : 'onShellReady';
 
-  if (isbot(request.headers.get('user-agent'))) {
-    await body.allReady;
-  }
+  return new Promise((resolve, reject) => {
+    let didError = false;
 
-  responseHeaders.set('Content-Type', 'text/html');
-  return new Response(body, {
-    headers: responseHeaders,
-    status: responseStatusCode,
+    let { pipe, abort } = ReactDOM.renderToPipeableStream(jsx, {
+      [callbackName]: async () => {
+
+        const body = new PassThrough();
+        const stream = createReadableStreamFromReadable(body);
+        responseHeaders.set('Content-Type', 'text/html');
+
+        resolve(
+          new Response(stream, {
+            headers: responseHeaders,
+            status: didError ? 500 : responseStatusCode,
+          }),
+        );
+        pipe(body);
+      },
+      onShellError(error: unknown) {
+        reject(error);
+      },
+      onError(error: unknown) {
+        didError = true;
+
+        console.error(error);
+      },
+    });
+
+    setTimeout(abort, ABORT_DELAY);
   });
 }
 
@@ -53,7 +71,7 @@ export default async function handleRequest(
       <RemixServer context={remixContext} url={request.url} />
   );
 
-  const requestHandler: PlatformRequestHandler = handleCfRequest;
+  const requestHandler: PlatformRequestHandler = handleNodeRequest;
 
   return requestHandler(
     request,
